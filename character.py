@@ -12,6 +12,7 @@ class Character():
         self.bonds = None
         self.flaws = None
         self.features = None
+        self.traits = None
         self.str = None
         self.dex = None
         self.const = None
@@ -26,8 +27,10 @@ class Character():
         self.charisma_modifier = None
         self.inspiration = None
         self.passive_wisdom = None
-        self.other_proficiencies_languages = None
+        self.other_proficiencies = None
+        self.languages = None
         self.equipment = []
+        self.ability_bonuses = []   #strength, dexterity, constitution, intelligence, wisdom, charisma
         self.cp = None  #copper
         self.sp = None  #silver
         self.ep = None  #electrium

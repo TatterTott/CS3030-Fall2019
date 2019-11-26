@@ -1,6 +1,5 @@
 from character import Character
 from menu import Menu
-import PDFWriter
 
 #main is intended to be left as short as possible, all logic should be handled in
 #class instances that we make to fill in character sheet variables

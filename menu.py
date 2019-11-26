@@ -1,5 +1,6 @@
 from character import Character
 from race import Race
+from charClass import CharClass
 
 #this class will handle all menu selections
 class Menu():
@@ -47,8 +48,12 @@ class Menu():
         #race class will handle all race attributes
         race = Race()
 
+        charClass = CharClass()
+
         #race will be filled in depending on menu selection
         if self.quick == True:
             race.chooseRace(character, menuOption='quick')
+            charClass.chooseClass(character, menuOption='quick')
         else:
             race.chooseRace(character, menuOption='detailed')
+            charClass.chooseClass(character, menuOption='detailed')
