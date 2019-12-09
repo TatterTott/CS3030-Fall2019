@@ -45,6 +45,7 @@ class Character():
         self.charisma_throw = None
         self.skills = {}
         self.prof_skills = []
+        self.prof_tools = []
         self.armor = None
         self.initiative = None
         self.speed = None

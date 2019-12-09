@@ -55,5 +55,49 @@ class CharClass():
     def characterBonuses(self, character):
         classUrl = self.classUrl + self.class_links[character.char_class]
         classJson = self.getUrlData(classUrl)
-        print(classJson)
+        max_number_of_skills = classJson["proficiency_choices"][0]["choose"]
+        print("A " + str(character.char_class) + " can have " + str(max_number_of_skills) + " proficient skills.")
+        print("Enter your proficient skills:")
+        prof_Json = classJson["proficiency_choices"][0]["from"]
+        prof_choices = []
+        for i in range(len(prof_Json)):
+            prof_choices.append(prof_Json[i]["name"][7:])
+        choices = ', '.join(i for i in prof_choices)
+
+        prof_choices = [i.lower() for i in prof_choices]
+        for i in range(1, max_number_of_skills + 1):
+            inp = input(str(i) + ":")
+            if inp.lower() not in prof_choices:
+                while(inp.lower() not in prof_choices):
+                    print(inp + " is not a valid skills choice. Choose a skill from the following:")
+                    print(choices)
+                    inp = input()
+
+            character.prof_skills.append(inp)
+
+        max_number_of_tools = classJson["proficiency_choices"][1]["choose"]
+        print("A " + str(character.char_class) + " can have " + str(max_number_of_tools) + " proficient tools.")
+        print("Enter your proficient tools:")
+
+        toolsJson = classJson["proficiency_choices"][1]["from"]
+        tools = []
+        for i in range(len(toolsJson)):
+            tools.append(toolsJson[i]["name"])
+
+        choices = ', '.join(i for i in tools)
+        tools = [i.lower() for i in tools]
+
+        for i in range(1, max_number_of_tools + 1):
+            inp = input(str(i) + ":")
+            if inp.lower() not in tools:
+                while(inp.lower() not in tools):
+                    print(inp + " is not a valid tool choice. Choose a tool from the following:")
+                    print(choices)
+                    inp = input()
+
+            character.prof_tools.append(inp)
+
+        print(character.prof_tools)
+
+        # print(classJson)
         #TODO: finish this method
