@@ -1,6 +1,8 @@
 from character import Character
 from race import Race
 from charClass import CharClass
+from statRoller import StatRoller
+from statCalculator import StatCalculator
 
 #this class will handle all menu selections
 class Menu():
@@ -50,10 +52,24 @@ class Menu():
 
         charClass = CharClass()
 
+        #charBackground = CharBackground()
+
+
         #race will be filled in depending on menu selection
         if self.quick == True:
             race.chooseRace(character, menuOption='quick')
             charClass.chooseClass(character, menuOption='quick')
+            #charBackground.chooseBackground(character, menuOption='quick')
+
+            StatRoller.rollForStats(character)
+            
+            StatCalculator.update(character)
+            
+            #TODO get the charcter class into a dictionary for pdfwriter
+            #TODO call pdfwriter with resulting dict.
         else:
             race.chooseRace(character, menuOption='detailed')
             charClass.chooseClass(character, menuOption='detailed')
+            charBackground.chooseBackground(character, menuOption='detailed')
+
+        

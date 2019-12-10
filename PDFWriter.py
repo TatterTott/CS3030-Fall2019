@@ -57,7 +57,7 @@ data_dict={
 
     #other Proficiences and Languages box
     #determined by a combination of characters: race, class, and background
-    "ProficienciesLang":"TEST",
+    "ProficienciesLang":"TESTTEST",
 
     #will remain 0 or empty as this is something the DM will awarded during game play
     "Inspiration":"TEST",
