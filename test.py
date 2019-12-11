@@ -2,18 +2,21 @@ import requests
 import json
 
 def main():
-    backgrounds = "https://api.open5e.com/backgrounds/"
-    response = requests.get(backgrounds)
+    response = requests.get("https://api.open5e.com/backgrounds/")
     response.raise_for_status()
     raceJson = json.loads(response.text)
+
+    backDict = {}
+
     bgs = raceJson['results']
-    numOfBackgrounds = len(bgs)
     for bg in bgs:
-        print("NAME:",bg.get('name'))
-        print("SKILLS:",bg.get('skill_proficiencies'))
-        print("TOOLS:",bg.get('tool_proficiences'))
-        print("LANGUAGES:",bg.get('languages'))
-        print("EQUIPMENT:",bg.get('equipment'))
-        print()
+            backDict[bg.get('name')] = {'Skills': bg.get('skill_proficiencies'),
+                                        'Tools': bg.get('tool_proficiencies'),
+                                        'Languages': bg.get('languages'),
+                                        'Equipment': bg.get('equipment')
+                                        }
+
+    print(backDict)
+    print(backDict['Acolyte'].get('Skills'))
 
 main()

@@ -37,4 +37,5 @@ def determineProfs(character):
     skillProfs = character.prof_skills
     for skill in character.skills:
         if skill in skillProfs:
-            
+            pass
+

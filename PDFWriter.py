@@ -147,26 +147,26 @@ data_dict={
 
     #Death Saving throws (successes and failures)
     #will remain blank is altered during gameplay
-    '''"Check Box 12":"No",
-    "Check Box 13":"No",
-    "Check Box 14":"No",
-    "Check Box 15":"No",
-    "Check Box 16":"No",
-    "Check Box 17":"No",'''
+    #"Check Box 12":"No",
+    #"Check Box 13":"No",
+    #"Check Box 14":"No",
+    #"Check Box 15":"No",
+    #"Check Box 16":"No",
+    #"Check Box 17":"No",
 
     #weapons and attack are determined by class and background 
     #The stats will be pulled from a seperate api call
     #Attack and Spellcasting text field will be filled in with special attack abilities from class, and race
-    "Wpn Name":"TEST",
-    "Wpn1 AtkBonus":"TEST",
-    "Wpn1 Damage":"TEST",
-    "Wpn Name 2":"TEST",
-    "Wpn2 AtkBonus ":"TEST",
-    "Wpn2 Damage ":"TEST",
-    "Wpn Name 3":"TEST",
-    "Wpn3 AtkBonus  ":"TEST",
-    "Wpn3 Damage ":"TEST",
-    "AttacksSpellcasting":"TEST",
+    "Wpn Name":"TEST1",
+    "Wpn1 AtkBonus":"TEST2",
+    "Wpn1 Damage":"TEST3",
+    "Wpn Name 2":"TEST4",
+    "Wpn2 AtkBonus ":"TEST5",
+    "Wpn2 Damage ":"TEST6",
+    "Wpn Name 3":"TEST7",
+    "Wpn3 AtkBonus  ":"TEST8",
+    "Wpn3 Damage ":"TEST9",
+    "AttacksSpellcasting":"TEST10",
 
     #currency tracker 
     #values will be determined from background

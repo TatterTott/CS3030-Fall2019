@@ -5,13 +5,16 @@ import json
 class CharBackground():
 
     def __init__(self,bgDict):
-        self.backgounds = bgDict.keys()
+        self.backgrounds = list(bgDict.keys())
+        self.bgDict = bgDict
 
-    def chooseClass(self, character, menuOption):
+    def chooseBackground(self, character, menuOption):
          if menuOption == 'quick':
+            backgrounds = self.backgrounds
+            bgString = backgrounds[0]+ ", " + backgrounds[1] + ", " + backgrounds[2]
+            print("The options available to you are: "+bgString)
             print('Please enter a background for your character')
             charBG = input().lower()
-            backgrounds = self.backgrounds
 
             backgrounds = [i.lower() for i in backgrounds]
 
@@ -24,9 +27,9 @@ class CharBackground():
                     charBG = input().lower()
 
             character.backgound = charBG.capitalize()
-            self.characterBonuses(character)
+            #self.characterBonuses(character)
     
-     def characterBonuses(self, character):
+    def characterBonuses(self, character):
         background = character.backgound
         bgInfo = self.backgounds.get(background)
         availSkills = bgInfo.get(skills)

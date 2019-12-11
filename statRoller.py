@@ -5,12 +5,13 @@ class StatRoller():
         shouldRoll = input("Would you like the program to randomly roll your stats?").lower()
         if shouldRoll == "yes":
             roller(character)
-            '''badRoll= True
+            badRoll= True
             while badRoll:
-                isGood = input("Is this an acceptable roll? ").lower()
-                if isGood == "yes":
+                isBad = input("Would you like to reroll? ").lower()
+                if isBad == "no":
                     badRoll = False
-                roller(character)'''
+                else:
+                    roller(character)
         elif (shouldRoll == 'no'):
             enterStats(character)
         else:
