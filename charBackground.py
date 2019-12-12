@@ -36,6 +36,7 @@ class CharBackground():
         equip = self.bgDict[background].get("Equipment")
 
         #character.misc_profs += tools + equipment
+        charcater
 
 
 
