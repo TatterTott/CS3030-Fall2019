@@ -37,6 +37,7 @@ class Character():
         self.gp = None  #gold
         self.pp = None  #platinum
         self.proficiency_bonus = None
+        self.saving_throws = {"STR":False, "DEX":False, "CON":False, "INT":False, "WIS":False, "CHA":False}
         self.str_throw = None
         self.dex_throw = None
         self.const_throw = None
@@ -45,7 +46,7 @@ class Character():
         self.charisma_throw = None
         self.skills = {}
         self.prof_skills = []
-        self.prof_tools = []
+        self.prof_misc = []
         self.armor = None
         self.initiative = None
         self.speed = None

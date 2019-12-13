@@ -95,9 +95,20 @@ class CharClass():
                     print(choices)
                     inp = input()
 
-            character.prof_tools.append(inp)
+            character.prof_misc.append(inp)
 
-        print(character.prof_tools)
+        weaponProficienciesJson = classJson["proficiencies"]
+        for i in range(len(weaponProficienciesJson)):
+            character.prof_misc.append(weaponProficienciesJson[i]["name"])
+
+        savingThrowJson = classJson["saving_throws"]
+        for i in range(len(savingThrowJson)):
+            character.saving_throws[savingThrowJson[i]["name"]] = True
+
+        character.hit_dice = classJson["hit_die"]
+
+
+
 
         # print(classJson)
         #TODO: finish this method
