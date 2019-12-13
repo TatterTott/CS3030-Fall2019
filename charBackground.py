@@ -36,8 +36,5 @@ class CharBackground():
         langs = self.bgDict[background].get("Languages")
         equip = self.bgDict[background].get("Equipment")
 
-        
-        
-
 
 

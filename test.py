@@ -2,6 +2,17 @@ import requests
 import json
 
 def main():
+    bgDict = getBG()
+    charaBack = "Acolyte"
+
+    print(bgDict[charaBack].get("Skills"))
+    print(bgDict[charaBack].get("Tools"))
+    print(bgDict[charaBack].get("Languages"))
+    print(bgDict[charaBack].get("Equipment"))
+
+    equip = bgDict[charaBack].get("Equipment")
+
+def getBG():
     response = requests.get("https://api.open5e.com/backgrounds/")
     response.raise_for_status()
     raceJson = json.loads(response.text)
@@ -16,7 +27,6 @@ def main():
                                         'Equipment': bg.get('equipment')
                                         }
 
-    print(backDict)
-    print(backDict['Acolyte'].get('Skills'))
+    return backDict
 
 main()

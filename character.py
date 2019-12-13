@@ -43,7 +43,7 @@ class Character():
         self.int_throw = ""
         self.wisdom_throw = ""
         self.charisma_throw = ""
-        self.prof_save = []
+        self.prof_save = ['No',]
         self.skills = {}    #{'Acrobatics':'15',...}
         self.prof_skills = {}   #{'Acrobatics': 'Yes', 'Arcana': 'No',...}
         self.prof_misc = []
@@ -53,4 +53,3 @@ class Character():
         self.HP_max = ""
         self.hit_dice = ""
         self.weapons = {} # {wpn1:[atk bonus, damage],wpn2:[atk bonus, damage],...}
-        
