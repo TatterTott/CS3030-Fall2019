@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 
 
 class CharBackground():
@@ -10,9 +11,8 @@ class CharBackground():
 
     def chooseBackground(self, character, menuOption):
          if menuOption == 'quick':
-            backgrounds = self.backgrounds
-            bgString = backgrounds[0]+ ", " + backgrounds[1] + ", " + backgrounds[2]
-            print("The options available to you are: "+bgString)
+            backgrounds = self.backgrounds 
+            print("The options available to you are: " + backgrounds[0] + ", " + backgrounds[1] + ", " + backgrounds[2])
             print('Please enter a background for your character')
             charBG = input().lower()
 
@@ -27,10 +27,17 @@ class CharBackground():
                     charBG = input().lower()
 
             character.backgound = charBG.capitalize()
-            #self.characterBonuses(character)
+            self.backgroundStats(character)
     
-    def characterBonuses(self, character):
+    def backgroundStats(self, character):
         background = character.backgound
-        bgInfo = self.backgounds.get(background)
-        availSkills = bgInfo.get(skills)
+        skills = self.bgDict[background].get("Skills")
+        tools = self.bgDict[background].get("Tools")
+        langs = self.bgDict[background].get("Languages")
+        equip = self.bgDict[background].get("Equipment")
+
+        
+        
+
+
 
