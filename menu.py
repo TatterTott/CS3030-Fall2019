@@ -66,7 +66,8 @@ class Menu():
         if self.quick == True:
             race.chooseRace(character, menuOption='quick')
             charClass.chooseClass(character, menuOption='quick')
-            charBackground.chooseBackground(character, menuOption='quick')
+            bg = charBackground.chooseBackground(character, menuOption='quick')
+            character.background = bg
 
             StatRoller.rollForStats(character)
             
@@ -74,6 +75,7 @@ class Menu():
 
             charDict = CharacterDictBuilder.builder(character)
             outFile = characterName+'_char_sheet.pdf'
+    
             write_fillable_pdf('.\\CharacterSheetTemplate.pdf',outFile,charDict)
         else:
             race.chooseRace(character, menuOption='detailed')

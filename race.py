@@ -61,13 +61,19 @@ class Race():
         languages = []
         for i in range(len(jsonLanguages)):
             languages.append(jsonLanguages[i]['name'])
-        character.languages = ', '.join(i for i in languages)
+        for lang in languages:
+            character.languages.append(lang)
 
         jsonProficiencies = raceJson['starting_proficiencies']
         proficiencies = []
         for i in range(len(jsonProficiencies)):
-            proficiencies.append(jsonProficiencies[i]['name'][7:])
-        character.prof_skills = proficiencies
+            prof = (jsonProficiencies[i]['name'])
+            if (prof.startswith('Skill')):
+                prof = prof[7:]
+                character.prof_skills[prof] = 'Yes'
+            else:
+                character.prof_misc += prof
+            
 
         jsonTraits = raceJson['traits']
         traits = []

@@ -66,14 +66,14 @@ class CharClass():
 
         prof_choices = [i.lower() for i in prof_choices]
         for i in range(1, max_number_of_skills + 1):
-            inp = input(str(i) + ":")
+            inp = input(str(i) + ":").capitalize()
             if inp.lower() not in prof_choices:
                 while(inp.lower() not in prof_choices):
                     print(inp + " is not a valid skills choice. Choose a skill from the following:")
                     print(choices)
-                    inp = input()
-
-            character.prof_skills.append(inp)
+                    inp = input().capitalize()
+                    
+            character.prof_skills[inp] = 'Yes'
 
         max_number_of_tools = classJson["proficiency_choices"][1]["choose"]
         print("A " + str(character.char_class) + " can have " + str(max_number_of_tools) + " proficient tools.")
@@ -103,7 +103,7 @@ class CharClass():
 
         savingThrowJson = classJson["saving_throws"]
         for i in range(len(savingThrowJson)):
-            character.saving_throws[savingThrowJson[i]["name"]] = True
+            character.saving_throws[savingThrowJson[i]["name"]] = "Yes"
 
         character.hit_dice = classJson["hit_die"]
 
