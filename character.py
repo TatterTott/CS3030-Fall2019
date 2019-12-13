@@ -53,4 +53,3 @@ class Character():
         self.HP_max = ""
         self.hit_dice = ""
         self.weapons = {} # {wpn1:[atk bonus, damage],wpn2:[atk bonus, damage],...}
-        
