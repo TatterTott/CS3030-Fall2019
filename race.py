@@ -47,7 +47,13 @@ class Race():
                           + race_options)
                     race = input().lower()
 
-            character.race = race.capitalize()
+            if race == 'half-elf':
+                character.race = 'Half-Elf'
+            elif race == 'half-orc':
+                character.race = 'Half-Orc'
+            else:
+                character.race = race.capitalize()
+
             self.raceBonuses(character)
 
     #will fill in the character bonuses(languages, speed, ability bonuses, proficiencies, traits)
@@ -61,13 +67,19 @@ class Race():
         languages = []
         for i in range(len(jsonLanguages)):
             languages.append(jsonLanguages[i]['name'])
-        character.languages = ', '.join(i for i in languages)
+        for lang in languages:
+            character.languages.append(lang)
 
         jsonProficiencies = raceJson['starting_proficiencies']
         proficiencies = []
         for i in range(len(jsonProficiencies)):
-            proficiencies.append(jsonProficiencies[i]['name'][7:])
-        character.prof_skills = proficiencies
+            prof = (jsonProficiencies[i]['name'])
+            if (prof.startswith('Skill')):
+                prof = prof[7:]
+                character.prof_skills[prof] = 'Yes'
+            else:
+                character.prof_misc += prof
+            
 
         jsonTraits = raceJson['traits']
         traits = []

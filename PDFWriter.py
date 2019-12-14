@@ -212,12 +212,12 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
                     annotation.update(pdfrw.PdfDict(AS=pdfrw.PdfName(str(data_dict[key]))))
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
-def main():
-    write_fillable_pdf(INVOICE_TEMPLATE_PATH, INVOICE_OUTPUT_PATH, data_dict)
+#def main():
+    #write_fillable_pdf(INVOICE_TEMPLATE_PATH, INVOICE_OUTPUT_PATH, data_dict)
     '''charName = data_dict.get("CharacterName")
     #INVOICE_OUTPUT_PATH = charName + INVOICE_OUTPUT_PATH
     absPath = os.path.abspath(INVOICE_OUTPUT_PATH)
     absPath = "file://"+ absPath
     chrome=webbrowser
     chrome.open(absPath)'''
-main()
+#main()
