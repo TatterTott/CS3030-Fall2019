@@ -3,7 +3,7 @@ class Character():
         self.char_name = ""
         self.char_class = ""
         self.race = ""
-        self.background = "Test"
+        self.background = ""
         self.alignment = ""
         self.player_name = ""
         self.experience = ""

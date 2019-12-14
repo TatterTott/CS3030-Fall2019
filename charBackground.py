@@ -26,14 +26,19 @@ class CharBackground():
                           + bg_options)
                     charBG = input().lower()
 
-            character.backgound = charBG.capitalize()
+            if charBG == 'con artist':
+                charBG = 'Con Artist'
+                character.background = charBG
+            else:
+                character.background = charBG.capitalize()
+
             self.backgroundStats(character)
 
             return charBG.capitalize()
 
     
     def backgroundStats(self, character):
-        background = character.backgound
+        background = character.background
 
         skillStr = self.bgDict[background].get("Skills")
         skills = skillStr.split(", ")
@@ -82,7 +87,10 @@ class CharBackground():
         if tools == None:   
             pass
         else:
-            character.prof_misc.append(tools)
+            if tools != None and tools.startswith("Two"):
+                character.prof_misc.append("Disquise kit, Forgery Kit")
+            else:
+                character.prof_misc.append(tools)
         character.prof_misc.append(charLangs)
 
         equip = self.bgDict[background].get("Equipment")

@@ -23,7 +23,7 @@ class CharacterDictBuilder():
         charDict['CHA'] = character.charisma
         charDict['CHamod'] = character.charisma_modifier
 
-        charDict['Passive'] = "FIX"
+        charDict['Passive'] = character.passive_wisdom
 
         profsString = ', '.join(str(i) for i in character.prof_misc)
         charDict['ProficienciesLang'] = profsString
@@ -32,54 +32,54 @@ class CharacterDictBuilder():
 
         charDict['ProfBonus'] = "+2"
 
-        #charDict['Check Box 11'] = character.saving_throws.get('STR')
+        charDict['Check Box 11'] = character.saving_throws.get('STR')
         charDict['ST Strength'] = character.str_throw
-        #charDict['Check Box 18'] = character.saving_throws.get("DEX")
+        charDict['Check Box 18'] = character.saving_throws.get("DEX")
         charDict['ST Dexterity'] = character.dex_throw
-        #charDict['Check Box 19'] = character.saving_throws.get('CON')
+        charDict['Check Box 19'] = character.saving_throws.get('CON')
         charDict['ST Constitution'] = character.const_throw
-        #charDict['Check Box 20'] = character.saving_throws.get('INT')
+        charDict['Check Box 20'] = character.saving_throws.get('INT')
         charDict['ST Intelligence'] = character.int_throw
-        #charDict['Check Box 21'] = character.saving_throws.get('WIS')
+        charDict['Check Box 21'] = character.saving_throws.get('WIS')
         charDict['ST Wisdom'] = character.wisdom_throw
-        #charDict['Check Box 22'] = character.saving_throws.get('CHA')
+        charDict['Check Box 22'] = character.saving_throws.get('CHA')
         charDict['ST Charisma'] = character.charisma_throw
 
-        #charDict['Check Box 23'] = character.prof_skills.get("Acrobatics")
+        charDict['Check Box 23'] = character.prof_skills.get("Acrobatics")
         charDict['Acrobatics'] = character.skills.get('Acrobatics')
-        #charDict['Check Box 24'] = character.prof_skills.get("Animal Handling")
+        charDict['Check Box 24'] = character.prof_skills.get("Animal Handling")
         charDict['Animal'] = character.skills.get('Animal Handling')
-        #charDict['Check Box 25'] = character.prof_skills.get("Arcana")
+        charDict['Check Box 25'] = character.prof_skills.get("Arcana")
         charDict['Arcana'] = character.skills.get('Arcana')
-        #charDict['Check Box 26'] = character.prof_skills.get("Athletics")
+        charDict['Check Box 26'] = character.prof_skills.get("Athletics")
         charDict['Athletics'] = character.skills.get('Athletics')
-        #charDict['Check Box 27'] = character.prof_skills.get("Deception")
+        charDict['Check Box 27'] = character.prof_skills.get("Deception")
         charDict['Deception'] = character.skills.get('Deception')
-        #charDict['Check Box 28'] = character.prof_skills.get("History")
+        charDict['Check Box 28'] = character.prof_skills.get("History")
         charDict['History'] = character.skills.get('History')
-        #charDict['Check Box 29'] = character.prof_skills.get("Insight")
+        charDict['Check Box 29'] = character.prof_skills.get("Insight")
         charDict['Insight'] = character.skills.get('Insight')
-        #charDict['Check Box 30'] = character.prof_skills.get("Intimidation")
+        charDict['Check Box 30'] = character.prof_skills.get("Intimidation")
         charDict['Intimidation'] = character.skills.get('Intimidation')
-        #charDict['Check Box 31'] = character.prof_skills.get("Investigation")
+        charDict['Check Box 31'] = character.prof_skills.get("Investigation")
         charDict['Investigation'] = character.skills.get('Investigation')
-        #charDict['Check Box 32'] = character.prof_skills.get("Medicine")
+        charDict['Check Box 32'] = character.prof_skills.get("Medicine")
         charDict['Medicine'] = character.skills.get('Medicine')
-        #charDict['Check Box 33'] = character.prof_skills.get("Nature")
+        charDict['Check Box 33'] = character.prof_skills.get("Nature")
         charDict['Nature'] = character.skills.get('Nature')
-        #charDict['Check Box 34'] = character.prof_skills.get("Perception")
+        charDict['Check Box 34'] = character.prof_skills.get("Perception")
         charDict['Perception'] = character.skills.get('Perception')
-        #charDict['Check Box 35'] = character.prof_skills.get("Performance")
+        charDict['Check Box 35'] = character.prof_skills.get("Performance")
         charDict['Performance'] = character.skills.get('Performance')
-        #charDict['Check Box 36'] = character.prof_skills.get("Persuasion")
+        charDict['Check Box 36'] = character.prof_skills.get("Persuasion")
         charDict['Persuasion'] = character.skills.get('Persuasion')
-        #charDict['Check Box 37'] = character.prof_skills.get("Religion")
+        charDict['Check Box 37'] = character.prof_skills.get("Religion")
         charDict['Religion'] = character.skills.get('Religion')
-        #charDict['Check Box 38'] = character.prof_skills.get("Sleight of hand")
+        charDict['Check Box 38'] = character.prof_skills.get("Sleight of hand")
         charDict['SleightofHand'] = character.skills.get('Sleight of hand')
-        #charDict['Check Box 39'] = character.prof_skills.get("Stealth")
+        charDict['Check Box 39'] = character.prof_skills.get("Stealth")
         charDict['Stealth'] = character.skills.get('Stealth')
-        #charDict['Check Box 40'] = character.prof_skills.get("Survival")
+        charDict['Check Box 40'] = character.prof_skills.get("Survival")
         charDict['Survival'] = character.skills.get('Survival')
         
         charDict['AC'] = character.armor
