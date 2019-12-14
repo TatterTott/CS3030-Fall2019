@@ -55,47 +55,52 @@ class CharClass():
     def characterBonuses(self, character):
         classUrl = self.classUrl + self.class_links[character.char_class]
         classJson = self.getUrlData(classUrl)
-        max_number_of_skills = classJson["proficiency_choices"][0]["choose"]
-        print("A " + str(character.char_class) + " can have " + str(max_number_of_skills) + " proficient skills.")
-        print("Enter your proficient skills:")
-        prof_Json = classJson["proficiency_choices"][0]["from"]
-        prof_choices = []
-        for i in range(len(prof_Json)):
-            prof_choices.append(prof_Json[i]["name"][7:])
-        choices = ', '.join(i for i in prof_choices)
+        for i in range(len(classJson["proficiency_choices"])):
+            #check to see if its a skill list
+            if classJson["proficiency_choices"][i]["from"][0]["name"][:7] == "Skill: ":
+                max_number_of_skills = classJson["proficiency_choices"][i]["choose"]
+                print(
+                    "A " + str(character.char_class) + " can have " + str(max_number_of_skills) + " proficient skills.")
+                print("Enter your proficient skills:")
+                prof_Json = classJson["proficiency_choices"][i]["from"]
+                prof_choices = []
+                for j in range(len(prof_Json)):
+                    prof_choices.append(prof_Json[j]["name"][7:])
+                choices = ', '.join(i for i in prof_choices)
 
-        prof_choices = [i.lower() for i in prof_choices]
-        for i in range(1, max_number_of_skills + 1):
-            inp = input(str(i) + ":").capitalize()
-            if inp.lower() not in prof_choices:
-                while(inp.lower() not in prof_choices):
-                    print(inp + " is not a valid skills choice. Choose a skill from the following:")
-                    print(choices)
-                    inp = input().capitalize()
-                    
-            character.prof_skills[inp] = 'Yes'
+                prof_choices = [j.lower() for j in prof_choices]
+                for j in range(1, max_number_of_skills + 1):
+                    inp = input(str(j) + ":").capitalize()
+                    if inp.lower() not in prof_choices:
+                        while (inp.lower() not in prof_choices):
+                            print(inp + " is not a valid skills choice. Choose a skill from the following:")
+                            print(choices)
+                            inp = input().capitalize()
 
-        max_number_of_tools = classJson["proficiency_choices"][1]["choose"]
-        print("A " + str(character.char_class) + " can have " + str(max_number_of_tools) + " proficient tools.")
-        print("Enter your proficient tools:")
+                    character.prof_skills[inp] = 'Yes'
+            #else add to misc tool list
+            else:
+                max_number_of_tools = classJson["proficiency_choices"][i]["choose"]
+                print("A " + str(character.char_class) + " can have " + str(max_number_of_tools) + " proficient tools.")
+                print("Enter your proficient tools:")
 
-        toolsJson = classJson["proficiency_choices"][1]["from"]
-        tools = []
-        for i in range(len(toolsJson)):
-            tools.append(toolsJson[i]["name"])
+                toolsJson = classJson["proficiency_choices"][i]["from"]
+                tools = []
+                for j in range(len(toolsJson)):
+                    tools.append(toolsJson[j]["name"])
 
-        choices = ', '.join(i for i in tools)
-        tools = [i.lower() for i in tools]
+                choices = ', '.join(j for j in tools)
+                tools = [j.lower() for j in tools]
 
-        for i in range(1, max_number_of_tools + 1):
-            inp = input(str(i) + ":")
-            if inp.lower() not in tools:
-                while(inp.lower() not in tools):
-                    print(inp + " is not a valid tool choice. Choose a tool from the following:")
-                    print(choices)
-                    inp = input()
+                for j in range(1, max_number_of_tools + 1):
+                    inp = input(str(j) + ":")
+                    if inp.lower() not in tools:
+                        while (inp.lower() not in tools):
+                            print(inp + " is not a valid tool choice. Choose a tool from the following:")
+                            print(choices)
+                            inp = input()
 
-            character.prof_misc.append(inp)
+                    character.prof_misc.append(inp)
 
         weaponProficienciesJson = classJson["proficiencies"]
         for i in range(len(weaponProficienciesJson)):

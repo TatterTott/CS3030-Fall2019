@@ -47,7 +47,13 @@ class Race():
                           + race_options)
                     race = input().lower()
 
-            character.race = race.capitalize()
+            if race == 'half-elf':
+                character.race = 'Half-Elf'
+            elif race == 'half-orc':
+                character.race = 'Half-Orc'
+            else:
+                character.race = race.capitalize()
+
             self.raceBonuses(character)
 
     #will fill in the character bonuses(languages, speed, ability bonuses, proficiencies, traits)
