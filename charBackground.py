@@ -63,7 +63,7 @@ class CharBackground():
                 while(firstLang.lower() not in languages):
                     print(firstLang + " is not a valid language choice. Choose a languages from the following:")
                     print(languageList)
-                    firstLang = input.lower()
+                    firstLang = input().lower
 
             backLangs += firstLang + ", "
 
@@ -80,7 +80,7 @@ class CharBackground():
 
         else:
             if langs == None:
-                charLangs = ""
+                charLangs = ', '.join(i for i in character.languages)
             else:
                 charLangs = langs
 
@@ -91,6 +91,7 @@ class CharBackground():
                 character.prof_misc.append("Disquise kit, Forgery Kit")
             else:
                 character.prof_misc.append(tools)
+
         character.prof_misc.append(charLangs)
 
         equip = self.bgDict[background].get("Equipment")

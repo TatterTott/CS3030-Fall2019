@@ -23,6 +23,7 @@ class CharacterDictBuilder():
         charDict['CHA'] = character.charisma
         charDict['CHamod'] = character.charisma_modifier
 
+
         charDict['Passive'] = character.passive_wisdom
 
         profsString = ', '.join(str(i) for i in character.prof_misc)
@@ -32,17 +33,17 @@ class CharacterDictBuilder():
 
         charDict['ProfBonus'] = "+2"
 
-        charDict['Check Box 11'] = "No" #character.saving_throws.get('STR')
+        charDict['Check Box 11'] = character.saving_throws.get('STR')
         charDict['ST Strength'] = character.str_throw
-        charDict['Check Box 18'] = "No"  # character.saving_throws.get("DEX")
+        charDict['Check Box 18'] = character.saving_throws.get("DEX")
         charDict['ST Dexterity'] = character.dex_throw
-        charDict['Check Box 19'] = "No"  # character.saving_throws.get('CON')
+        charDict['Check Box 19'] = character.saving_throws.get('CON')
         charDict['ST Constitution'] = character.const_throw
-        charDict['Check Box 20'] = "No"  # character.saving_throws.get('INT')
+        charDict['Check Box 20'] = character.saving_throws.get('INT')
         charDict['ST Intelligence'] = character.int_throw
-        charDict['Check Box 21'] = "No"  # character.saving_throws.get('WIS')
+        charDict['Check Box 21'] = character.saving_throws.get('WIS')
         charDict['ST Wisdom'] = character.wisdom_throw
-        charDict['Check Box 22'] = "No"  # haracter.saving_throws.get('CHA')
+        charDict['Check Box 22'] = character.saving_throws.get('CHA')
         charDict['ST Charisma'] = character.charisma_throw
 
         charDict['Check Box 23'] = character.prof_skills.get("Acrobatics")

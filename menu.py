@@ -104,11 +104,10 @@ class Menu():
 
     def getPersonalInformation(self, character):
         moreInfo = input(
-            "This is more for character back story.\n Would you like to enter some information on your character ? ").lower()
+            "This is more for character back story.\n Would you like to enter some information on your character? ").lower()
         if moreInfo == "yes":
-            character.personality = input(
-                "Enter a few Personality Traits of your character")
-            character.ideals = input("Enter some of your character's ideals")
-            character.bonds = input("What Bonds does your character hold")
-            character.flaws = input(
-                "What are some of the Flaws your character has")
+            character.personality = input("Enter a few Personality Traits of your character? ")
+            character.ideals = input("Enter some of your character's ideals? ")
+            character.bonds = input("What Bonds does your character hold? ")
+            character.flaws = input("What are some of the Flaws your character has? ")
+            character.alignment = input("What alignment best describes your character? ")
