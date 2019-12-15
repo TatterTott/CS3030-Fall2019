@@ -48,10 +48,10 @@ class Race():
                     while(moreInfo.lower() != "continue" and moreInfo.lower() not in races and moreInfo.lower() != "races"):
                         moreInfo = input(moreInfo + " is not a valid input. Please enter a valid menu option.")
 
-                if(moreInfo == "continue"):
+                if(moreInfo.lower() == "continue"):
                     break
 
-                elif(moreInfo == "races"):
+                elif(moreInfo.lower() == "races"):
                     print(race_options)
 
                 else:
