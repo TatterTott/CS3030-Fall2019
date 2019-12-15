@@ -75,14 +75,14 @@ class Menu():
             charClass.chooseClass(character, menuOption='quick')
             bg = charBackground.chooseBackground(character, menuOption='quick')
             character.background = bg
-            startingEquipment.chooseStartingEquipment(character, menuOption='quick')
 
         else:
             race.chooseRace(character, menuOption='detailed')
             charClass.chooseClass(character, menuOption='detailed')
             bg = charBackground.chooseBackground(character, menuOption='detailed')
             character.background = bg
-            startingEquipment.chooseStartingEquipment(character, menuOption='detailed')
+
+        startingEquipment.chooseStartingEquipment(character)
 
         equipment.getEquipmentStats(character)
 
