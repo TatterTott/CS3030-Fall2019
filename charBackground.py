@@ -1,6 +1,11 @@
 import requests
 import json
+from selenium import webdriver
+import getpass
 
+user = getpass.getuser()
+# Path to geckodriver for firefox/selenium
+path = 'C:\\Users\\' + user + '\\Downloads\\geckodriver-v0.26.0-win64\\geckodriver.exe'
 
 class CharBackground():
 
@@ -9,28 +14,128 @@ class CharBackground():
         self.bgDict = bgDict
 
     def chooseBackground(self, character, menuOption):
-         if menuOption == 'quick':
-            backgrounds = self.backgrounds
-            bgString = backgrounds[0]+ ", " + backgrounds[1] + ", " + backgrounds[2]
-            print("The options available to you are: "+bgString)
-            print('Please enter a background for your character')
-            charBG = input().lower()
+        backgrounds = self.backgrounds
+        backgrounds = [i.lower() for i in backgrounds]
+        bg_options = ', '.join(i for i in self.backgrounds)
 
-            backgrounds = [i.lower() for i in backgrounds]
+        if menuOption == 'detailed':
+            print("DnD has a variety of backgrounds to choose from. The following are the backgrounds that you can choose from.")
+            print(bg_options)
 
-            if charBG not in backgrounds:
-                while charBG not in backgrounds:
-                    bg_options = ', '.join(i for i in self.backgounds)
-                    print(charBG + ' is not a valid background option.\n'
-                          'Please select a background from the following:\n'
-                          + bg_options)
-                    charBG = input().lower()
+            while(True):
+                moreInfo = input("If you would like to know more about a background, enter details. If you would like to\n"
+                                 "continue, enter continue. If you would like to print out the background options again,\n"
+                                 "enter backgrounds: ")
 
-            character.backgound = charBG.capitalize()
-            #self.characterBonuses(character)
+                if(moreInfo.lower() != "continue" and moreInfo.lower() != "details" and moreInfo.lower() != "backgrounds"):
+
+                    while(moreInfo.lower() != "continue" and moreInfo.lower() != "details" and moreInfo.lower() != "backgrounds"):
+                        moreInfo = input(moreInfo + " is not a valid input. Please enter a valid menu option.")
+
+                if(moreInfo.lower() == "continue"):
+                    break
+
+                elif(moreInfo.lower() == "backgrounds"):
+                    print(bg_options)
+
+                else:
+                    backgroundUrl = 'https://open5e.com/sections/backgrounds'
+                    driver = webdriver.Firefox(executable_path=path)
+                    driver.get(backgroundUrl)
+
+        print('Please enter a background for your character')
+        charBG = input().lower()
+
+        if charBG not in backgrounds:
+            while charBG not in backgrounds:
+                print(charBG + ' is not a valid background option.\n'
+                      'Please select a background from the following:\n'
+                      + bg_options)
+                charBG = input().lower()
+
+        if charBG == 'con artist':
+            charBG = 'Con Artist'
+            character.background = charBG
+        else:
+            character.background = charBG.capitalize()
+
+        self.backgroundStats(character)
+
+        return charBG.capitalize()
+
     
-    def characterBonuses(self, character):
-        background = character.backgound
-        bgInfo = self.backgounds.get(background)
-        availSkills = bgInfo.get(skills)
+    def backgroundStats(self, character):
+        background = character.background
 
+        skillStr = self.bgDict[background].get("Skills")
+        skills = skillStr.split(", ")
+        for elem in skills:
+            character.prof_skills[elem] = "Yes"
+
+        tools = self.bgDict[background].get("Tools")
+        langs = self.bgDict[background].get("Languages")
+
+        if langs != None and langs.startswith("Two"):
+            languageList,languages = self.getLangs()
+            print("The options of languages you have to chose from are",languageList)
+            print("You know: ")
+            backLangs = ""
+            for elem in character.languages:
+                print(elem)
+
+            languages = [i.lower() for i in languages]
+
+            firstLang = input("please chose a language: ")
+            if firstLang.lower() not in languages:
+                while(firstLang.lower() not in languages):
+                    print(firstLang + " is not a valid language choice. Choose a languages from the following:")
+                    print(languageList)
+                    firstLang = input()
+
+            backLangs += firstLang + ", "
+
+            firstLang = input("please chose another language: ")
+            if firstLang.lower() not in languages:
+                while(firstLang.lower() not in languages):
+                    print(firstLang + " is not a valid language choice. Choose a languages from the following:")
+                    print(languageList)
+                    firstLang = input.lower()
+
+            backLangs += firstLang
+            charLangs = ', '.join(i for i in character.languages) 
+            charLangs += ", " + backLangs
+
+        else:
+            if langs == None:
+                charLangs = ', '.join(i for i in character.languages)
+            else:
+                charLangs = langs
+
+        if tools == None:   
+            pass
+        else:
+            if tools != None and tools.startswith("Two"):
+                character.prof_misc.append("Disquise kit, Forgery Kit")
+            else:
+                character.prof_misc.append(tools)
+
+        character.prof_misc.append(charLangs)
+
+        equip = self.bgDict[background].get("Equipment")
+        character.equipment.append(equip)
+
+    def getLangs(self):
+        response = requests.get("http://dnd5eapi.co/api/languages")
+        response.raise_for_status()
+        langJson = json.loads(response.text)
+
+        languages =[]
+        
+        for lang in langJson['results']:
+            languages.append(lang['name'])
+
+        langString = ""
+        for elem in languages:
+            langString = ', '.join(i for i in languages)
+
+        return langString,languages
