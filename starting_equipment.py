@@ -32,7 +32,7 @@ class StartingEquipment():
             startingEquipment = equipmentJSON["starting_equipment"]
 
             for i in range(len(startingEquipment)):
-                character.startingEquipment.append((startingEquipment[i]["item"]["name"], startingEquipment[i]["quantity"]))
+                character.startingEquipment.append((startingEquipment[i]["item"]["name"].lower(), startingEquipment[i]["quantity"]))
 
             itemTuple = character.startingEquipment
             itemTuple = [i[0] for i in itemTuple]

@@ -10,6 +10,7 @@ from statCalculator import StatCalculator
 from PDFWriter import write_fillable_pdf
 from characterDictBuilder import CharacterDictBuilder
 from starting_equipment import StartingEquipment
+from equipment import Equipment
 
 #this class will handle all menu selections
 class Menu():
@@ -63,6 +64,8 @@ class Menu():
 
         startingEquipment = StartingEquipment()
 
+        equipment = Equipment()
+
         charBackground = CharBackground(backgroundList)
 
 
@@ -73,6 +76,7 @@ class Menu():
             bg = charBackground.chooseBackground(character, menuOption='quick')
             character.background = bg
             startingEquipment.chooseStartingEquipment(character, menuOption='quick')
+            equipment.getEquipmentStats(character)
 
             StatRoller.rollForStats(character)
             
