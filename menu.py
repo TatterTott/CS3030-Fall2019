@@ -92,6 +92,10 @@ class Menu():
         StatCalculator.update(character)
 
         self.getPersonalInformation(character)
+<<<<<<< HEAD
+=======
+        character.alignment = input("What alignment best describes your character? ")
+>>>>>>> 09e7ee784e8e347f36e150522b5648e6cb003ecf
 
         charDict = CharacterDictBuilder.builder(character)
         outFile = characterName + '_char_sheet.pdf'
