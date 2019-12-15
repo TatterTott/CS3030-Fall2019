@@ -76,23 +76,28 @@ class Menu():
             bg = charBackground.chooseBackground(character, menuOption='quick')
             character.background = bg
             startingEquipment.chooseStartingEquipment(character, menuOption='quick')
-            equipment.getEquipmentStats(character)
-            self.startingEquipString(character)
-
-            StatRoller.rollForStats(character)
-            
-            StatCalculator.update(character)
-
-            self.getPersonalInformation(character)
-
-            charDict = CharacterDictBuilder.builder(character)
-            outFile = characterName+'_char_sheet.pdf'
-    
-            write_fillable_pdf('.\\CharacterSheetTemplate.pdf',outFile,charDict)
+            equipment.getEquipmentStats(character)    
         else:
             race.chooseRace(character, menuOption='detailed')
             charClass.chooseClass(character, menuOption='detailed')
-            charBackground.chooseBackground(character, menuOption='detailed')
+            bg = charBackground.chooseBackground(character, menuOption='detailed')
+            character.background = bg
+            startingEquipment.chooseStartingEquipment(character, menuOption='detailed')
+
+        equipment.getEquipmentStats(character)
+        self.startingEquipString(character)
+
+        StatRoller.rollForStats(character)
+
+        StatCalculator.update(character)
+
+        self.getPersonalInformation(character)
+
+        charDict = CharacterDictBuilder.builder(character)
+        outFile = characterName + '_char_sheet.pdf'
+
+        write_fillable_pdf('.\\CharacterSheetTemplate.pdf', outFile, charDict)
+
     
     def getBGs(self):
         response = requests.get("https://api.open5e.com/backgrounds/")
@@ -125,6 +130,5 @@ class Menu():
         stringEquip = ""
         for elem in character.startingEquipment:
             stringEquip += str(elem[0]) + " x " + str(elem[1]) + ", "
-        print("Appending equip")
         character.equipment.append(stringEquip)
         

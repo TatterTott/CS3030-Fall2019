@@ -20,25 +20,37 @@ class StatCalculator():
         weaponFiller(character)
 
 def weaponFiller(character):
-    counter = 1
-    counterPre = 0
     numWeapons = len(character.weapon_dict)
 
-    print(character.weapon_dict[0])
-    print(character.weapon_dict[1])
+    if numWeapons >= 3:
+        weapon1Stat = str(character.weapon_dict.get(list(character.weapon_dict)[0])[0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[0])[1])
+        character.weapons[list(character.weapon_dict)[0]] = weapon1Stat
 
+        weapon2Stat = str(character.weapon_dict.get(list(character.weapon_dict)[1])[0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[1])[1])
+        character.weapons[list(character.weapon_dict)[1]] = weapon2Stat
 
+        weapon3Stat = str(character.weapon_dict.get(list(character.weapon_dict)[2])[0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[2])[1])
+        character.weapons[list(character.weapon_dict)[2]] = weapon3Stat
 
-    '''while counter < numWeapons and counter < 3:
-        print(character.weapon_dict[counterPre])
-        counter += 1
-        counterPre += 1
-    for elem in character.weapon_dict:
-        if counter < numWeapons:
-            print(elem)
-            print(character.weapon_dict.get(elem)[0])
-            print(character.weapon_dict.get(elem)[1])
-            counter +='''
+    elif numWeapons == 2:
+        weapon1Stat = str(character.weapon_dict.get(list(character.weapon_dict)[0])[
+                          0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[0])[1])
+        character.weapons[list(character.weapon_dict)[0]] = weapon1Stat
+
+        weapon2Stat = str(character.weapon_dict.get(list(character.weapon_dict)[1])[
+                          0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[1])[1])
+        character.weapons[list(character.weapon_dict)[1]] = weapon2Stat
+
+        character.weapons[""] = ""
+
+    elif numWeapons == 1:
+        weapon1Stat = str(character.weapon_dict.get(list(character.weapon_dict)[0])[
+                          0]) + "d" + str(character.weapon_dict.get(list(character.weapon_dict)[0])[1])
+        character.weapons[list(character.weapon_dict)[0]] = weapon1Stat
+
+        character.weapons[""] = ""
+
+        character.weapons[" "] = ""
         
 
 def calculateModifiers(character):
