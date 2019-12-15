@@ -90,4 +90,5 @@ class Character():
         self.speed = ""
         self.HP_max = ""
         self.hit_dice = ""
+        self.weapon_dict = {} #{weaponName:(dict_count,dice_value)}
         #self.weapons = {} # {wpn1:[atk bonus, damage],wpn2:[atk bonus, damage],...}
