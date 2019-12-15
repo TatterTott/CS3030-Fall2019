@@ -15,6 +15,32 @@ class StatCalculator():
 
         determineAC(character)
 
+        character.HP_max = str(int(character.hit_dice) + int(character.const_modifier))
+
+        weaponFiller(character)
+
+def weaponFiller(character):
+    counter = 1
+    counterPre = 0
+    numWeapons = len(character.weapon_dict)
+
+    print(character.weapon_dict[0])
+    print(character.weapon_dict[1])
+
+
+
+    '''while counter < numWeapons and counter < 3:
+        print(character.weapon_dict[counterPre])
+        counter += 1
+        counterPre += 1
+    for elem in character.weapon_dict:
+        if counter < numWeapons:
+            print(elem)
+            print(character.weapon_dict.get(elem)[0])
+            print(character.weapon_dict.get(elem)[1])
+            counter +='''
+        
+
 def calculateModifiers(character):
     strSkill = int(character.str)
     dexSkill = int(character.dex)
@@ -43,7 +69,7 @@ def determineAC(character):
     if "Leather" in listEquip:
         character.armor = str(11 + int(character.dex_modifier))
     if "Chain" in listEquip:
-        character.armor = str(18 + int(character.dex_modifier))
+        character.armor = str(13 + int(character.dex_modifier))
     if "Plate" in listEquip:
         character.armor = "18"
     else:

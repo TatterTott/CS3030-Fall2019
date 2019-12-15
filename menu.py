@@ -77,6 +77,7 @@ class Menu():
             character.background = bg
             startingEquipment.chooseStartingEquipment(character, menuOption='quick')
             equipment.getEquipmentStats(character)
+            self.startingEquipString(character)
 
             StatRoller.rollForStats(character)
             
@@ -119,3 +120,11 @@ class Menu():
             character.bonds = input("What Bonds does your character hold? ")
             character.flaws = input("What are some of the Flaws your character has? ")
             character.alignment = input("What alignment does your character fall under? ")
+
+    def startingEquipString(self,character):
+        stringEquip = ""
+        for elem in character.startingEquipment:
+            stringEquip += str(elem[0]) + " x " + str(elem[1]) + ", "
+        print("Appending equip")
+        character.equipment.append(stringEquip)
+        

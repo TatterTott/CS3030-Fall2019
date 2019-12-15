@@ -93,7 +93,7 @@ class CharacterDictBuilder():
         charDict["HDTotal"] = "1d"+str(character.hit_dice)
         charDict['HD'] = ""
 
-        #charDict['Wpn Name'] = list(character.weapons)[0]
+        #charDict['Wpn Name'] = list(character.weapon_dict)[0]
         #charDict['Wpn1 AtkBonus'] = character.weapons.get(list(character.weapons)[0])[0]
         #charDict['Wpn1 Damage'] = character.weapons.get(list(character.weapons)[0])[1]
         #charDict['Wpn Name 2'] = list(character.weapons)[1]
