@@ -84,8 +84,17 @@ class StartingEquipment():
                                 print(quantity, item)
                 print('\n')
 
-            inpChoice = int(input("Choose a choice to select your equipment from"
-                              "(Enter a number between 1 and " + str(len(choices)) + "): ")) - 1
+            inpChoice = input("Choose a choice to select your equipment from"
+                              "(Enter a number between 1 and " + str(len(choices)) + "): ")
+
+            inputChoices = [str(i) for i in range(1, len(choices) + 1)]
+
+            if inpChoice not in inputChoices or not inpChoice.isdigit():
+                while(inpChoice not in inputChoices or not inpChoice.isdigit()):
+                    inpChoice = input(inpChoice + " is not a valid choice. Please enter a number between 1 and " +
+                          str(len(choices)) + "): ")
+
+            inpChoice = int(inpChoice) - 1
 
             for option in range(1, len(choices[inpChoice].keys()) + 1):
                 numInner = 0
@@ -114,7 +123,3 @@ class StartingEquipment():
                             inpOption = input().lower()
 
                     character.startingEquipment.append((inpOption, itemDict[inpOption]))
-
-
-
-
