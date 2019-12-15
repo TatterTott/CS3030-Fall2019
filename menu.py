@@ -79,8 +79,6 @@ class Menu():
             StatCalculator.update(character)
 
             self.getPersonalInformation(character)
-            character.alignment = input(
-                "What alignment best describes your character? ")
 
             charDict = CharacterDictBuilder.builder(character)
             outFile = characterName+'_char_sheet.pdf'
@@ -116,3 +114,4 @@ class Menu():
             character.ideals = input("Enter some of your character's ideals? ")
             character.bonds = input("What Bonds does your character hold? ")
             character.flaws = input("What are some of the Flaws your character has? ")
+            character.alignment = input("What alignment does your character fall under? ")

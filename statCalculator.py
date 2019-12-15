@@ -13,6 +13,8 @@ class StatCalculator():
 
         determineProfs(character)
 
+        determineAC(character)
+
 def calculateModifiers(character):
     strSkill = int(character.str)
     dexSkill = int(character.dex)
@@ -32,6 +34,26 @@ def calculateModifiers(character):
 def calcMod(skill):
     val = int((skill - 10) / 2)
     return(val)
+
+def determineAC(character):
+    listEquip = []
+    for item in character.startingEquipment:
+        listEquip.append(item[0])
+    
+    if "Leather" in listEquip:
+        character.armor = str(11 + int(character.dex_modifier))
+    if "Chain" in listEquip:
+        character.armor = str(18 + int(character.dex_modifier))
+    if "Plate" in listEquip:
+        character.armor = "18"
+    else:
+        character.armor = str(10 + int(character.dex_modifier))
+
+    if character.char_class == "Monk":
+        character.armor = str(10 + int(character.dex_modifier) + int(character.wisdom_modifier))
+    elif character.char_class == "Barbarian":
+        character.armor = str(
+            10 + int(character.dex_modifier) + int(character.const_modifier))
 
 def determineProfs(character):
     if character.saving_throws.get("STR") == "No":

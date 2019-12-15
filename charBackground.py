@@ -63,7 +63,7 @@ class CharBackground():
                 while(firstLang.lower() not in languages):
                     print(firstLang + " is not a valid language choice. Choose a languages from the following:")
                     print(languageList)
-                    firstLang = input().lower
+                    firstLang = input()
 
             backLangs += firstLang + ", "
 

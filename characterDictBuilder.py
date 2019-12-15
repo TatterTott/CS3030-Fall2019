@@ -7,7 +7,7 @@ class CharacterDictBuilder():
         charDict['Background'] = character.background
         charDict['PlayerName'] = character.player_name
         charDict['Race '] = character.race
-        charDict['Alignment'] = ""
+        charDict['Alignment'] = character.alignment
         charDict['XP'] = 0
 
         charDict['STR'] = character.str
