@@ -6,6 +6,7 @@ from charClass import CharClass
 from charBackground import CharBackground
 from statRoller import StatRoller
 from statCalculator import StatCalculator
+#from personalInfo import PersonalInfo
 from PDFWriter import write_fillable_pdf
 from characterDictBuilder import CharacterDictBuilder
 from starting_equipment import StartingEquipment
@@ -77,6 +78,8 @@ class Menu():
             
             StatCalculator.update(character)
 
+            self.getPersonalInformation(character)
+
             charDict = CharacterDictBuilder.builder(character)
             outFile = characterName+'_char_sheet.pdf'
     
@@ -102,3 +105,14 @@ class Menu():
                                     'Equipment':bg.get('equipment')
                                     }
         return backDict
+
+    def getPersonalInformation(self, character):
+        moreInfo = input(
+            "This is more for character back story.\n Would you like to enter some information on your character ? ").lower()
+        if moreInfo == "yes":
+            character.personality = input(
+                "Enter a few Personality Traits of your character")
+            character.ideals = input("Enter some of your character's ideals")
+            character.bonds = input("What Bonds does your character hold")
+            character.flaws = input(
+                "What are some of the Flaws your character has")

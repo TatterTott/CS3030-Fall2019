@@ -37,7 +37,7 @@ class Character():
         self.ep = ""  #electrium
         self.gp = ""  #gold
         self.pp = ""  #platinum
-        self.proficiency_bonus = ""
+        self.proficiency_bonus = "2"
         self.str_throw = ""
         self.dex_throw = ""
         self.const_throw = ""

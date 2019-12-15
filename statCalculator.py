@@ -34,10 +34,37 @@ def calcMod(skill):
     return(val)
 
 def determineProfs(character):
-    skillProfs = character.prof_skills
-    for skill in character.skills:
-        if skill in skillProfs:
-            pass
+    for skill in character.prof_skills:
+        if character.prof_skills[skill] == "Yes":
+            character.skills[skill] = character.proficiency_bonus
         else:
-            pass
+            character.skills[skill] = "0"
+
+    for key in character.prof_skills:
+        pass
+        #TODO add skills
+        #print(key,character.prof_skills.get(key))
+
+    for key in character.skills:
+        pass
+        #print(key, character.skills.get(key))
+
+    '''character.prof_skills['Acrobatics']
+    character.prof_skills['Animal Handling']
+    character.prof_skills['Arcana']
+    character.prof_skills['Athletics']
+    character.prof_skills['Deception']
+    character.prof_skills['History']
+    character.prof_skills['Insight']
+    character.prof_skills['Intimidation']
+    character.prof_skills['Investigation']
+    character.prof_skills['Medicine']
+    character.prof_skills['Nature']
+    character.prof_skills['Perception']
+    character.prof_skills['Performance']
+    character.prof_skills['Persuasion']
+    character.prof_skills['Religion']
+    character.prof_skills['Sleight of hand']
+    character.prof_skills['Stealth']
+    character.prof_skills['Survival']'''
 
