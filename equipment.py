@@ -20,8 +20,9 @@ class Equipment():
         equipmentLinks = {}
         for i in range(len(links)):
             key = links[i]['name'].lower()
-            val = links[i]['url'][-1]
-            equipmentLinks[key] = val
+            val = links[i]['url']
+            val = [s for s in val.split('/') if s.isdigit()]
+            equipmentLinks[key] = val[0]
         return equipmentLinks
 
     def getEquipmentStats(self, character):
@@ -29,6 +30,8 @@ class Equipment():
         for i in range(len(character.startingEquipment)):
             equipmentURL = self.equipmentURL + self.equipmentLinks[character.startingEquipment[i][0]]
             equipmentJSON = self.getUrlData(equipmentURL)
+            if equipmentJSON["equipment_category"] == "Armor":
+                continue
             equipment = equipmentJSON["name"].lower()
             dice_count = equipmentJSON["damage"]["dice_count"]
             dice_value = equipmentJSON["damage"]["dice_value"]
