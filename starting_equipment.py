@@ -113,7 +113,7 @@ class StartingEquipment():
                 item_choices = [j.lower() for j in itemsList]
 
                 for j in range(1, numInner + 1):
-                    inpOption = input(str(j) + ":")
+                    inpOption = input(str(j) + ":").lower()
 
                     if inpOption.lower() not in item_choices:
 
