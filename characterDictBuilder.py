@@ -1,4 +1,3 @@
-
 class CharacterDictBuilder():
     def builder(character):
         charDict = {}
