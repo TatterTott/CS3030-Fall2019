@@ -1,4 +1,3 @@
-
 class CharacterDictBuilder():
     def builder(character):
         charDict = {}
@@ -7,7 +6,7 @@ class CharacterDictBuilder():
         charDict['Background'] = character.background
         charDict['PlayerName'] = character.player_name
         charDict['Race '] = character.race
-        charDict['Alignment'] = ""
+        charDict['Alignment'] = character.alignment
         charDict['XP'] = 0
 
         charDict['STR'] = character.str
@@ -22,6 +21,7 @@ class CharacterDictBuilder():
         charDict['WISmod'] = character.wisdom_modifier
         charDict['CHA'] = character.charisma
         charDict['CHamod'] = character.charisma_modifier
+
 
         charDict['Passive'] = character.passive_wisdom
 
@@ -54,21 +54,21 @@ class CharacterDictBuilder():
         charDict['Check Box 26'] = character.prof_skills.get("Athletics")
         charDict['Athletics'] = character.skills.get('Athletics')
         charDict['Check Box 27'] = character.prof_skills.get("Deception")
-        charDict['Deception'] = character.skills.get('Deception')
+        charDict['Deception '] = character.skills.get('Deception')
         charDict['Check Box 28'] = character.prof_skills.get("History")
-        charDict['History'] = character.skills.get('History')
+        charDict['History '] = character.skills.get('History')
         charDict['Check Box 29'] = character.prof_skills.get("Insight")
         charDict['Insight'] = character.skills.get('Insight')
         charDict['Check Box 30'] = character.prof_skills.get("Intimidation")
         charDict['Intimidation'] = character.skills.get('Intimidation')
         charDict['Check Box 31'] = character.prof_skills.get("Investigation")
-        charDict['Investigation'] = character.skills.get('Investigation')
+        charDict['Investigation '] = character.skills.get('Investigation')
         charDict['Check Box 32'] = character.prof_skills.get("Medicine")
         charDict['Medicine'] = character.skills.get('Medicine')
         charDict['Check Box 33'] = character.prof_skills.get("Nature")
         charDict['Nature'] = character.skills.get('Nature')
         charDict['Check Box 34'] = character.prof_skills.get("Perception")
-        charDict['Perception'] = character.skills.get('Perception')
+        charDict['Perception '] = character.skills.get('Perception')
         charDict['Check Box 35'] = character.prof_skills.get("Performance")
         charDict['Performance'] = character.skills.get('Performance')
         charDict['Check Box 36'] = character.prof_skills.get("Persuasion")
@@ -78,7 +78,7 @@ class CharacterDictBuilder():
         charDict['Check Box 38'] = character.prof_skills.get("Sleight of hand")
         charDict['SleightofHand'] = character.skills.get('Sleight of hand')
         charDict['Check Box 39'] = character.prof_skills.get("Stealth")
-        charDict['Stealth'] = character.skills.get('Stealth')
+        charDict['Stealth '] = character.skills.get('Stealth')
         charDict['Check Box 40'] = character.prof_skills.get("Survival")
         charDict['Survival'] = character.skills.get('Survival')
         
@@ -92,15 +92,15 @@ class CharacterDictBuilder():
         charDict["HDTotal"] = "1d"+str(character.hit_dice)
         charDict['HD'] = ""
 
-        #charDict['Wpn Name'] = list(character.weapons)[0]
+        charDict['Wpn Name'] = list(character.weapon_dict)[0]
         #charDict['Wpn1 AtkBonus'] = character.weapons.get(list(character.weapons)[0])[0]
-        #charDict['Wpn1 Damage'] = character.weapons.get(list(character.weapons)[0])[1]
-        #charDict['Wpn Name 2'] = list(character.weapons)[1]
+        charDict['Wpn1 Damage'] = character.weapons.get(list(character.weapons)[0])
+        charDict['Wpn Name 2'] = list(character.weapons)[1]
         #charDict['Wpn2 AtkBonus '] = character.weapons.get(list(character.weapons)[1])[0]
-        #charDict['Wpn1 Damage '] = character.weapons.get(list(character.weapons)[1])[1]
-        #charDict['Wpn Name 3'] = list(character.weapons)[2]
+        charDict['Wpn2 Damage '] = character.weapons.get(list(character.weapons)[1])
+        charDict['Wpn Name 3'] = list(character.weapons)[2]
         #charDict['Wpn3 AtkBonus  '] = character.weapons.get(list(character.weapons)[2])[0]
-        #charDict['Wpn3 Damage '] = character.weapons.get(list(character.weapons)[2])[1]
+        charDict['Wpn3 Damage '] = character.weapons.get(list(character.weapons)[2])
 
         charDict["CP"] = character.cp
         charDict['SP'] = character.sp

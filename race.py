@@ -24,41 +24,65 @@ class Race():
 
         i = 1
         for race in races:
-            race_links[race] = str(i)
+            race_links[race.lower()] = str(i)
             i += 1
 
         return races, race_links
 
     #user chooses a race and this function makes sure it's a valid race
     def chooseRace(self, character, menuOption):
+        race_options = ', '.join(i for i in self.races)
+        races = self.races
+        races = [i.lower() for i in races]
 
-        if menuOption == 'quick':
-            print('Please enter a race for your character')
-            race = input().lower()
-            races = self.races
+        if menuOption == 'detailed':
+            print("DnD has a variety of races to choose from. The following are the races that you can choose from.")
+            print(race_options)
 
-            races = [i.lower() for i in races]
+            while(True):
+                moreInfo = input("If you would like to know more about a race, enter the name of the race. If you would\n"
+                    "like to continue, enter continue. If you would like to print out the race options again, enter races: ")
 
-            if race not in races:
-                while race not in races:
-                    race_options = ', '.join(i for i in self.races)
-                    print(race + ' is not a valid race option.\n'
-                                 'Please select a race from the following:\n'
-                          + race_options)
-                    race = input().lower()
+                if(moreInfo.lower() != "continue" and moreInfo.lower() not in races and moreInfo.lower() != "races"):
 
-            if race == 'half-elf':
-                character.race = 'Half-Elf'
-            elif race == 'half-orc':
-                character.race = 'Half-Orc'
-            else:
-                character.race = race.capitalize()
+                    while(moreInfo.lower() != "continue" and moreInfo.lower() not in races and moreInfo.lower() != "races"):
+                        moreInfo = input(moreInfo + " is not a valid input. Please enter a valid menu option.")
 
-            self.raceBonuses(character)
+                if(moreInfo.lower() == "continue"):
+                    break
+
+                elif(moreInfo.lower() == "races"):
+                    print(race_options)
+
+                else:
+                    race_url = self.race_url + self.race_links[moreInfo.lower()]
+                    raceJson = self.getUrlData(race_url)
+                    print(raceJson["alignment"])
+                    print(raceJson["age"])
+                    print(raceJson["size_description"])
+
+        print('Please enter a race for your character')
+        race = input().lower()
+
+        if race not in races:
+            while race not in races:
+                print(race + ' is not a valid race option.\n'
+                             'Please select a race from the following:\n'
+                      + race_options)
+                race = input().lower()
+
+        if race == 'half-elf':
+            character.race = 'Half-Elf'
+        elif race == 'half-orc':
+            character.race = 'Half-Orc'
+        else:
+            character.race = race.capitalize()
+
+        self.raceBonuses(character)
 
     #will fill in the character bonuses(languages, speed, ability bonuses, proficiencies, traits)
     def raceBonuses(self, character):
-        race_url = self.race_url + self.race_links[character.race]
+        race_url = self.race_url + self.race_links[character.race.lower()]
         raceJson = self.getUrlData(race_url)
         character.speed = raceJson['speed']
         character.ability_bonuses = raceJson['ability_bonuses']

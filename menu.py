@@ -6,8 +6,11 @@ from charClass import CharClass
 from charBackground import CharBackground
 from statRoller import StatRoller
 from statCalculator import StatCalculator
+#from personalInfo import PersonalInfo
 from PDFWriter import write_fillable_pdf
 from characterDictBuilder import CharacterDictBuilder
+from starting_equipment import StartingEquipment
+from equipment import Equipment
 
 #this class will handle all menu selections
 class Menu():
@@ -59,6 +62,10 @@ class Menu():
 
         charClass = CharClass()
 
+        startingEquipment = StartingEquipment()
+
+        equipment = Equipment()
+
         charBackground = CharBackground(backgroundList)
 
 
@@ -68,19 +75,28 @@ class Menu():
             charClass.chooseClass(character, menuOption='quick')
             bg = charBackground.chooseBackground(character, menuOption='quick')
             character.background = bg
-
-            StatRoller.rollForStats(character)
-            
-            StatCalculator.update(character)
-
-            charDict = CharacterDictBuilder.builder(character)
-            outFile = characterName+'_char_sheet.pdf'
-    
-            write_fillable_pdf('.\\CharacterSheetTemplate.pdf',outFile,charDict)
         else:
             race.chooseRace(character, menuOption='detailed')
             charClass.chooseClass(character, menuOption='detailed')
-            charBackground.chooseBackground(character, menuOption='detailed')
+            bg = charBackground.chooseBackground(character, menuOption='detailed')
+            character.background = bg
+
+        startingEquipment.chooseStartingEquipment(character)
+
+        equipment.getEquipmentStats(character)
+        self.startingEquipString(character)
+
+        StatRoller.rollForStats(character)
+
+        StatCalculator.update(character)
+
+        self.getPersonalInformation(character)
+
+        charDict = CharacterDictBuilder.builder(character)
+        outFile = characterName + '_char_sheet.pdf'
+
+        write_fillable_pdf('.\\CharacterSheetTemplate.pdf', outFile, charDict)
+
     
     def getBGs(self):
         response = requests.get("https://api.open5e.com/backgrounds/")
@@ -98,3 +114,20 @@ class Menu():
                                     'Equipment':bg.get('equipment')
                                     }
         return backDict
+
+    def getPersonalInformation(self, character):
+        moreInfo = input(
+            "This is more for character back story.\n Would you like to enter some information on your character? ").lower()
+        if moreInfo == "yes":
+            character.personality = input("Enter a few Personality Traits of your character? ")
+            character.ideals = input("Enter some of your character's ideals? ")
+            character.bonds = input("What Bonds does your character hold? ")
+            character.flaws = input("What are some of the Flaws your character has? ")
+            character.alignment = input("What alignment does your character fall under? ")
+
+    def startingEquipString(self,character):
+        stringEquip = ""
+        for elem in character.startingEquipment:
+            stringEquip += str(elem[0]) + " x " + str(elem[1]) + ", "
+        character.equipment.append(stringEquip)
+        

@@ -30,13 +30,14 @@ class Character():
         self.other_proficiencies = ""
         self.languages = []
         self.equipment = []
+        self.startingEquipment = []
         self.ability_bonuses = []   #strength, dexterity, constitution, intelligence, wisdom, charisma
         self.cp = ""  #copper
         self.sp = ""  #silver
         self.ep = ""  #electrium
         self.gp = ""  #gold
         self.pp = ""  #platinum
-        self.proficiency_bonus = ""
+        self.proficiency_bonus = "2"
         self.str_throw = ""
         self.dex_throw = ""
         self.const_throw = ""
@@ -89,4 +90,5 @@ class Character():
         self.speed = ""
         self.HP_max = ""
         self.hit_dice = ""
-        #self.weapons = {} # {wpn1:[atk bonus, damage],wpn2:[atk bonus, damage],...}
+        self.weapon_dict = {} #{weaponName:(dict_count,dice_value)}
+        self.weapons = {} # {wpn1:[atk bonus, damage],wpn2:[atk bonus, damage],...}

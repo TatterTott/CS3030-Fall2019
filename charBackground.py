@@ -1,7 +1,11 @@
 import requests
 import json
-import re
+from selenium import webdriver
+import getpass
 
+user = getpass.getuser()
+# Path to geckodriver for firefox/selenium
+path = 'C:\\Users\\' + user + '\\Downloads\\geckodriver-v0.26.0-win64\\geckodriver.exe'
 
 class CharBackground():
 
@@ -10,31 +14,54 @@ class CharBackground():
         self.bgDict = bgDict
 
     def chooseBackground(self, character, menuOption):
-         if menuOption == 'quick':
-            backgrounds = self.backgrounds 
-            print("The options available to you are: " + backgrounds[0] + ", " + backgrounds[1] + ", " + backgrounds[2])
-            print('Please enter a background for your character')
-            charBG = input().lower()
+        backgrounds = self.backgrounds
+        backgrounds = [i.lower() for i in backgrounds]
+        bg_options = ', '.join(i for i in self.backgrounds)
 
-            backgrounds = [i.lower() for i in backgrounds]
+        if menuOption == 'detailed':
+            print("DnD has a variety of backgrounds to choose from. The following are the backgrounds that you can choose from.")
+            print(bg_options)
 
-            if charBG not in backgrounds:
-                while charBG not in backgrounds:
-                    bg_options = ', '.join(i for i in self.backgrounds)
-                    print(charBG + ' is not a valid background option.\n'
-                          'Please select a background from the following:\n'
-                          + bg_options)
-                    charBG = input().lower()
+            while(True):
+                moreInfo = input("If you would like to know more about a background, enter details. If you would like to\n"
+                                 "continue, enter continue. If you would like to print out the background options again,\n"
+                                 "enter backgrounds: ")
 
-            if charBG == 'con artist':
-                charBG = 'Con Artist'
-                character.background = charBG
-            else:
-                character.background = charBG.capitalize()
+                if(moreInfo.lower() != "continue" and moreInfo.lower() != "details" and moreInfo.lower() != "backgrounds"):
 
-            self.backgroundStats(character)
+                    while(moreInfo.lower() != "continue" and moreInfo.lower() != "details" and moreInfo.lower() != "backgrounds"):
+                        moreInfo = input(moreInfo + " is not a valid input. Please enter a valid menu option.")
 
-            return charBG.capitalize()
+                if(moreInfo.lower() == "continue"):
+                    break
+
+                elif(moreInfo.lower() == "backgrounds"):
+                    print(bg_options)
+
+                else:
+                    backgroundUrl = 'https://open5e.com/sections/backgrounds'
+                    driver = webdriver.Firefox(executable_path=path)
+                    driver.get(backgroundUrl)
+
+        print('Please enter a background for your character')
+        charBG = input().lower()
+
+        if charBG not in backgrounds:
+            while charBG not in backgrounds:
+                print(charBG + ' is not a valid background option.\n'
+                      'Please select a background from the following:\n'
+                      + bg_options)
+                charBG = input().lower()
+
+        if charBG == 'con artist':
+            charBG = 'Con Artist'
+            character.background = charBG
+        else:
+            character.background = charBG.capitalize()
+
+        self.backgroundStats(character)
+
+        return charBG.capitalize()
 
     
     def backgroundStats(self, character):
@@ -63,7 +90,7 @@ class CharBackground():
                 while(firstLang.lower() not in languages):
                     print(firstLang + " is not a valid language choice. Choose a languages from the following:")
                     print(languageList)
-                    firstLang = input.lower()
+                    firstLang = input()
 
             backLangs += firstLang + ", "
 
@@ -80,7 +107,7 @@ class CharBackground():
 
         else:
             if langs == None:
-                charLangs = ""
+                charLangs = ', '.join(i for i in character.languages)
             else:
                 charLangs = langs
 
@@ -91,6 +118,7 @@ class CharBackground():
                 character.prof_misc.append("Disquise kit, Forgery Kit")
             else:
                 character.prof_misc.append(tools)
+
         character.prof_misc.append(charLangs)
 
         equip = self.bgDict[background].get("Equipment")
