@@ -30,6 +30,7 @@ class Character():
         self.other_proficiencies = ""
         self.languages = []
         self.equipment = []
+        self.startingEquipment = []
         self.ability_bonuses = []   #strength, dexterity, constitution, intelligence, wisdom, charisma
         self.cp = ""  #copper
         self.sp = ""  #silver
