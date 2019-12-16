@@ -11,6 +11,7 @@ from PDFWriter import write_fillable_pdf
 from characterDictBuilder import CharacterDictBuilder
 from starting_equipment import StartingEquipment
 from equipment import Equipment
+import Sending
 
 #this class will handle all menu selections
 class Menu():
@@ -97,6 +98,9 @@ class Menu():
 
         write_fillable_pdf('.\\CharacterSheetTemplate.pdf', outFile, charDict)
 
+        Sending.email(outFile)
+
+        print("Good day to you Sir/Madam!")
     
     def getBGs(self):
         response = requests.get("https://api.open5e.com/backgrounds/")
